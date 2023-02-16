@@ -1,0 +1,21 @@
+Circuit: * C:\Users\premk\OneDrive\Projects\Radio\Air1\MicroAmp.asc
+
+Direct Newton iteration for .op point succeeded.
+
+Date: Sat Feb 04 13:27:34 2023
+Total elapsed time: 4.809 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 276022
+traniter = 276018
+tranpoints = 117011
+accept = 72016
+rejected = 44995
+matrix size = 11
+fillins = 0
+solver = Normal
+Matrix Compiler1: 610 bytes object code size  0.1/0.1/[0.1]
+Matrix Compiler2: 835 bytes object code size  0.1/0.1/[0.1]
+
