@@ -1,1 +1,4 @@
-../Core/Src/Air1.c:10:6:Air1APP	8	static
+../Core/Src/Air1.c:23:6:Air1APP	8	static
+../Core/Src/Air1.c:34:6:UpdateCursor	16	static
+../Core/Src/Air1.c:47:6:UpdateFreqency	16	static
+../Core/Src/Air1.c:74:9:Encoder_Diff	16	static

@@ -1,0 +1,33 @@
+!SESSION 2023-02-15 22:58:02.168 -----------------------------------------------
+eclipse.buildId=Version 1.11.2
+java.version=11.0.16
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2023-02-15 23:33:01.411
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2023-02-15 23:33:01.523
+!MESSAGE Log4j initialized with config file C:\Users\premk\OneDrive\Projects\Radio\Air1\Firmware\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2023-02-15 23:33:05.918
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2023-02-15 23:33:41.817 -----------------------------------------------
+eclipse.buildId=Version 1.11.2
+java.version=11.0.16
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2023-02-15 23:33:52.562
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2023-02-15 23:33:52.659
+!MESSAGE Log4j initialized with config file C:\Users\premk\OneDrive\Projects\Radio\Air1\Firmware\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2023-02-15 23:33:58.711
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.core.jobs 2 2 2023-02-15 23:33:59.704
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: com.st.stm32cube.ide.mcu.ide.startup.ProductDbLoad$1

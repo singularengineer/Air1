@@ -23,7 +23,8 @@ Core/Src/Air1.o: ../Core/Src/Air1.c ../Core/Inc/Air1.h ../Core/Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
- ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
+ ../Core/Inc/LCD_I2C.h ../Core/Inc/SI5351.h
 ../Core/Inc/Air1.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
@@ -51,3 +52,5 @@ Core/Src/Air1.o: ../Core/Src/Air1.c ../Core/Inc/Air1.h ../Core/Inc/main.h \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
+../Core/Inc/LCD_I2C.h:
+../Core/Inc/SI5351.h:

@@ -12,11 +12,16 @@
  extern "C" {
 #endif
 
- #include "main.h"
+#include "main.h"
+#include "LCD_I2C.h"
+#include "SI5351.h"
 
- #define LOOPSPEED 100
+#define LOOPSPEED 100
 
- void Air1APP();
+void Air1APP();
+int16_t Encoder_Diff();
+void UpdateFreqency();
+void UpdateCursor();
 
 #ifdef __cplusplus
 }
