@@ -105,8 +105,10 @@ void SI5351_OutputOff(uint8_t clk)
  * Frequency is in the range 1MHz to 150MHz
  */
 
-void SI5351_SetFrequency(uint32_t frequency)
+void SI5351_SetFrequency(eSi5351_ClockOut Channel, uint32_t frequency)
 {
+	static uint8_t firstrun = 0;
+
 	uint32_t pllFreq;
 	uint32_t xtalFreq = XTAL_FREQ;
 	uint32_t l;
@@ -116,34 +118,74 @@ void SI5351_SetFrequency(uint32_t frequency)
 	uint32_t denom;
 	uint32_t divider;
 
-	divider = 900000000 / frequency;// Calculate the division ratio. 900,000,000 is the maximum internal
-									// PLL frequency: 900MHz
-	if (divider % 2) divider--;		// Ensure an even integer division ratio
+	if(firstrun == 0)
+	{
 
-	pllFreq = divider * frequency;	// Calculate the pllFrequency: the divider * desired output frequency
 
-	mult = pllFreq / xtalFreq;		// Determine the multiplier to get to the required pllFrequency
-	l = pllFreq % xtalFreq;			// It has three parts:
-	f = l;							// mult is an integer that must be in the range 15..90
-	f *= 1048575;					// num and denom are the fractional parts, the numerator and denominator
-	f /= xtalFreq;					// each is 20 bits (range 0..1048575)
-	num = f;						// the actual multiplier is  mult + num / denom
-	denom = 1048575;				// For simplicity we set the denominator to the maximum 1048575
+		divider = 900000000 / frequency;// Calculate the division ratio. 900,000,000 is the maximum internal
+										// PLL frequency: 900MHz
+		if (divider % 2) divider--;		// Ensure an even integer division ratio
 
-									// Set up PLL A with the calculated multiplication ratio
-	SetPLL(SI_SYNTH_PLL_A, mult, num, denom);
-									// Set up MultiSynth divider 0, with the calculated divider.
-									// The final R division stage can divide by a power of two, from 1..128.
-									// reprented by constants SI_R_DIV1 to SI_R_DIV128 (see si5351a.h header file)
-									// If you want to output frequencies below 1MHz, you have to use the
-									// final R division stage
-	SetMultiSynth(SI_SYNTH_MS_0, divider, SI_R_DIV_1);
-									// Reset the PLL. This causes a glitch in the output. For small changes to
-									// the parameters, you don't need to reset the PLL, and there is no glitch
-	SI5351_WriteRegister(SI_PLL_RESET, 0xA0);
-									// Finally switch on the CLK0 output (0x4F)
-									// and set the MultiSynth0 input to be PLL A
-	SI5351_WriteRegister(SI_CLK0_CONTROL, 0x4F | SI_CLK_SRC_PLL_A);
+		pllFreq = divider * frequency;	// Calculate the pllFrequency: the divider * desired output frequency
+
+		mult = pllFreq / xtalFreq;		// Determine the multiplier to get to the required pllFrequency
+		l = pllFreq % xtalFreq;			// It has three parts:
+		f = l;							// mult is an integer that must be in the range 15..90
+		f *= 1048575;					// num and denom are the fractional parts, the numerator and denominator
+		f /= xtalFreq;					// each is 20 bits (range 0..1048575)
+		num = f;						// the actual multiplier is  mult + num / denom
+		denom = 1048575;				// For simplicity we set the denominator to the maximum 1048575
+
+										// Set up PLL A with the calculated multiplication ratio
+		SetPLL(SI_SYNTH_PLL_A, mult, num, denom);
+										// Set up MultiSynth divider 0, with the calculated divider.
+										// The final R division stage can divide by a power of two, from 1..128.
+										// reprented by constants SI_R_DIV1 to SI_R_DIV128 (see si5351a.h header file)
+										// If you want to output frequencies below 1MHz, you have to use the
+										// final R division stage
+	}
+	switch(Channel)
+	{
+		case CLK0:
+			SetMultiSynth(SI_SYNTH_MS_0, divider, SI_R_DIV_1);
+											// Reset the PLL. This causes a glitch in the output. For small changes to
+											// the parameters, you don't need to reset the PLL, and there is no glitch
+			SI5351_WriteRegister(SI_PLL_RESET, 0xA0);
+											// Finally switch on the CLK0 output (0x4F)
+											// and set the MultiSynth0 input to be PLL A
+			SI5351_WriteRegister(SI_CLK0_CONTROL, 0x4F | SI_CLK_SRC_PLL_A);
+			break;
+
+		case CLK1:
+			SetMultiSynth(SI_SYNTH_MS_1, divider, SI_R_DIV_1);
+											// Reset the PLL. This causes a glitch in the output. For small changes to
+											// the parameters, you don't need to reset the PLL, and there is no glitch
+			SI5351_WriteRegister(SI_PLL_RESET, 0xA0);
+											// Finally switch on the CLK0 output (0x4F)
+											// and set the MultiSynth0 input to be PLL A
+			SI5351_WriteRegister(SI_CLK1_CONTROL, 0x4F | SI_CLK_SRC_PLL_A);
+			break;
+
+		case CLK2:
+			SetMultiSynth(SI_SYNTH_MS_2, divider, SI_R_DIV_1);
+											// Reset the PLL. This causes a glitch in the output. For small changes to
+											// the parameters, you don't need to reset the PLL, and there is no glitch
+			SI5351_WriteRegister(SI_PLL_RESET, 0xA0);
+											// Finally switch on the CLK0 output (0x4F)
+											// and set the MultiSynth0 input to be PLL A
+			SI5351_WriteRegister(SI_CLK2_CONTROL, 0x4F | SI_CLK_SRC_PLL_A);
+			break;
+		default:
+			break;
+	}
+
+//	SetMultiSynth(SI_SYNTH_MS_0, divider, SI_R_DIV_1);
+//									// Reset the PLL. This causes a glitch in the output. For small changes to
+//									// the parameters, you don't need to reset the PLL, and there is no glitch
+//	SI5351_WriteRegister(SI_PLL_RESET, 0xA0);
+//									// Finally switch on the CLK0 output (0x4F)
+//									// and set the MultiSynth0 input to be PLL A
+//	SI5351_WriteRegister(SI_CLK0_CONTROL, 0x4F | SI_CLK_SRC_PLL_A);
 
 }
 

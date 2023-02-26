@@ -62,7 +62,7 @@ void UpdateFreqency()
 	{
 		LCD_MoveCursor(0,0);
 		lcd_ptr = itoa(freq_temp,(char *)lcd_buff,10);
-		SI5351_SetFrequency(freq_temp);
+		SI5351_SetFrequency(CLK0, freq_temp);
 
 		while(*lcd_ptr)
 			LCD_Data(*lcd_ptr++);

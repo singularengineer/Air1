@@ -38,6 +38,12 @@
 #define SI_CLK_SRC_PLL_A	0b00000000
 #define SI_CLK_SRC_PLL_B	0b00100000
 
+typedef enum {
+	CLK0,
+	CLK1,
+	CLK2
+} eSi5351_ClockOut;
+
 void SI5351_Init(I2C_HandleTypeDef *i2c);
 void si5351aOutputOff(uint8_t clk);
 void si5351aSetFrequency(uint32_t frequency);
@@ -46,7 +52,7 @@ uint8_t SI5351_ReadRegister(uint8_t reg, uint8_t *data, uint8_t rxlen);
 void SetPLL(uint8_t pll, uint8_t mult, uint32_t num, uint32_t denom);
 void SetMultiSynth(uint8_t synth, uint32_t divider, uint8_t rDiv);
 void SI5351_OutputOff(uint8_t clk);
-void SI5351_SetFrequency(uint32_t frequency);
+void SI5351_SetFrequency(eSi5351_ClockOut Channel, uint32_t frequency);
 
 
 #ifdef __cplusplus

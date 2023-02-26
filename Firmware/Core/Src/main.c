@@ -109,7 +109,7 @@ int main(void)
   while(*str)
 	  LCD_Data(*str++);
 
-  UpdateFreqency();
+  SI5351_SetFrequency(CLK0, 7150000);
 
   while (1)
   {
